@@ -1,35 +1,47 @@
 name: CI/CD Pipeline
 
+# Quando o workflow deve rodar
 on:
   pull_request:
-    branches: [ dev ]   # CI roda no dev
+    branches: [ dev ]   # CI roda ao criar PR no dev
   push:
-    branches: [ main ]  # CD roda no main
+    branches: [ main ]  # CD roda quando houver push no main
 
 jobs:
   build:
     name: Build / Test
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Python
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-      - name: Install dependencies
+
+      - name: Instalar dependências
         run: pip install -r requirements.txt
-      - name: Run tests
+
+      - name: Rodar testes
         run: pytest --maxfail=1 --disable-warnings -q
 
   deploy:
     name: Deploy
-    needs: build         # ⚡ Isso faz a caixa do deploy depender do build
+    needs: build         # ⚡ Só roda se o build passar
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Python
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-      - name: Simulate Deployment
-        run: echo "Deploy realizado com sucesso!"
+
+      - name: Simular Deployment
+        run: |
+          echo "Deploy iniciado..."
+          echo "Deploy do Mini Shopee concluído com sucesso!"
