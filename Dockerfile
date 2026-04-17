@@ -1,15 +1,15 @@
-# Usar imagem oficial do Python
+# 1️⃣ Escolher imagem base do Python
 FROM python:3.11-slim
 
-# Definir diretório de trabalho dentro do container
+# 2️⃣ Definir diretório de trabalho no container
 WORKDIR /app
 
-# Copiar todos os arquivos do repositório para o container
-COPY . .
+# 3️⃣ Copiar todos os arquivos do projeto para dentro do container
+COPY . /app
 
-# Instalar dependências se houver (requirements.txt)
-# Se você não tiver, pode ignorar essa linha
-RUN pip install --no-cache-dir -r requirements.txt
+# 4️⃣ Atualizar pip e instalar pytest (para testes)
+RUN pip install --upgrade pip
+RUN pip install pytest
 
-# Comando para rodar o app
+# 5️⃣ Comando padrão para rodar a aplicação
 CMD ["python", "app.py"]
