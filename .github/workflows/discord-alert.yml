@@ -1,0 +1,20 @@
+name: Discord Alert
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - alertas-discord
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Discord Notification
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d '{"content":"🚀 Novo push realizado no repositório Mini Shopee!"}' \
+          ${{ secrets.DISCORD_WEBHOOK }}
