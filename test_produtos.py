@@ -5,9 +5,9 @@ def test_lista_nao_vazia():
     assert len(produtos) > 0
 
 
-def test_existe_categoria_eletronicos():
+def test_existe_categoria_perifericos():
     categorias = [p["categoria"] for p in produtos]
-    assert "Eletrônicos" in categorias
+    assert "Periféricos" in categorias
 
 
 def test_todos_produtos_tem_nome():
