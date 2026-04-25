@@ -10,3 +10,6 @@ Projeto Python para listar produtos de um nicho e calcular comissão de afiliado
 ## Como usar
 1. Execute `app.py`
 2. Digite uma categoria para filtrar ou pressione ENTER para ver todos os produtos
+
+
+Teste de alerta do GitHub Actions para envio no Discord.
